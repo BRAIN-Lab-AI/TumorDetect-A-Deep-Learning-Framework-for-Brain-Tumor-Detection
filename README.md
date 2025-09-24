@@ -17,13 +17,7 @@ Thus, the problem is that how to improve YOLO to detect subtle tumor features, s
 The project domain includes healthcare, computer vision, and deep learning. The focus is on brain tumor detection using brain MRI scans. The proposed model is useful in healthcare because it can provide accurate detections and bounding boxes. This helps identify tumors, plan surgeries, and track treatment progress.
 
 ## What is the paper trying to do, and what are you planning to do?
-The RCS-YOLO paper improves YOLO for brain tumor detection by adding two main ideas: the RCS module, which makes feature extraction more efficient, and the RCS-OSA block, which combines features more effectively. These changes help the model detect tumors with better accuracy and faster speed.
-What I am planning to do is trying to improve the model:
-•	Understand the RCS-YOLO model.
-•	Experiment with different loss functions
-•	Apply regularization
-•	Optimize training
-•	Modify layers slightly
+The RCS-YOLO paper improves YOLO for brain tumor detection by adding two main ideas: the RCS module, which makes feature extraction more efficient, and the RCS-OSA block, which combines features more effectively. These changes help the model detect tumors with better accuracy and faster speed. In my project, I plan to explore possible improvements to the model by first understanding how the RCS-YOLO architecture works, then experimenting with different loss functions, applying regularization techniques, optimizing training parameters, and making small modifications to the layers.
 
 # THE FOLLOWING IS SUPPOSED TO BE DONE LATER
 
