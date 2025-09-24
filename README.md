@@ -7,17 +7,23 @@
 - **Affiliations:** IAU and KFUPM
 
 ## Introduction
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+This is a deep learning–based project for brain tumor detection using a well-known object detection model called YOLO (You Only Look Once). YOLO is a real-time system for object detection in images and videos. It is extremely fast and achieves high accuracy. The model has been applied to many fields such as autonomous driving and healthcare. However, few studies have examined the effectiveness of YOLO networks in brain tumor detection. This is because this domain requires both high precision and low latency simultaneously. The RCS-YOLO paper improves the YOLO model by introducing the Reparameterized Convolution with Channel Shuffle (RCS) module and One-Shot Aggregation (OSA) of RCS blocks. These novel improvements allow for richer feature extraction and reduced time consumption.
 
 ## Problem Statement
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+YOLO models are among the fastest object detectors in deep learning. However, they face some challenges in medical imaging tasks such as brain tumor detection. First, detecting small or low-contrast tumors is difficult because standard convolutional layers often lose fine details as the network goes deeper. Second, many high-performing models need heavy computation, which makes them hard to use in real-time medical problems. Third, feature redundancy and inefficient aggregation of multi-scale information also waste resources and reduce accuracy.
+Thus, the problem is that how to improve YOLO to detect subtle tumor features, such as small or low-contrast anomalies, while keeping it fast and efficient. RCS-YOLO solves this by changing the convolution blocks and aggregation methods to focus better on important channels and spatial details.
 
 ## Application Area and Project Domain
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+The project domain includes healthcare, computer vision, and deep learning. The focus is on brain tumor detection using brain MRI scans. The proposed model is useful in healthcare because it can provide accurate detections and bounding boxes. This helps identify tumors, plan surgeries, and track treatment progress.
 
 ## What is the paper trying to do, and what are you planning to do?
-Write 1-2 technical paragraphs (feel free to add images if you would like).
-
+The RCS-YOLO paper improves YOLO for brain tumor detection by adding two main ideas: the RCS module, which makes feature extraction more efficient, and the RCS-OSA block, which combines features more effectively. These changes help the model detect tumors with better accuracy and faster speed.
+What I am planning to do is trying to improve the model:
+•	Understand the RCS-YOLO model.
+•	Experiment with different loss functions
+•	Apply regularization
+•	Optimize training
+•	Modify layers slightly
 
 # THE FOLLOWING IS SUPPOSED TO BE DONE LATER
 
