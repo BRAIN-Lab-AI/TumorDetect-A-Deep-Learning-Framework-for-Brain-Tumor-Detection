@@ -27,7 +27,7 @@ In my project, I plan to explore possible improvements to the model by first und
 - **Report:** [Project Report](/report.pdf)
 
 ### Reference Paper
-- [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+- [Enhanced MRI brain tumor detection and classification via topological data analysis and low-rank tensor decomposition](https://www.sciencedirect.com/science/article/pii/S2772415824000142)
 
 ### Reference Dataset
 - [LAION-5B Dataset](https://laion.ai/blog/laion-5b/)
