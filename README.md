@@ -55,8 +55,8 @@ In my project, I plan to explore possible improvements to the models by first un
 - **Problem 3:** Balancing high classification accuracy with model interpretability remains difficult.
   
 ### Loopholes or Research Areas
-- **Evaluation Metrics:** Lack of robust metrics to effectively assess the quality of generated images.
-- **Output Consistency:** Inconsistencies in output quality when scaling the model to higher resolutions.
+- **Evaluation Metrics:** Lack of unified metrics to effectively assess the quality of Interpretability methods (saliency maps, Grad-CAM).
+- **Visualization Consistency:** Inconsistencies in explanation quality when applied across different deep learning models.
 - **Computational Resources:** Training requires significant GPU compute resources, which may not be readily accessible.
 
 ### Problem vs. Ideation: Proposed 3 Ideas to Solve the Problems
