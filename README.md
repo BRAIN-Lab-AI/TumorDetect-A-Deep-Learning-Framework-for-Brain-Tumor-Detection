@@ -118,19 +118,19 @@ The workflow classify MRI images into tumor types through two approaches:
     ```
 
 3. **Prepare Dataset:** Organize your brain tumor MRI dataset in the following structure:
-```
- Dataset/
- ├── Training/
- │   ├── glioma/
- │   ├── meningioma/
- │   ├── notumor/
- │   └── pituitary/
- └── Testing/
-     ├── glioma/
-     ├── meningioma/
-     ├── notumor/
-     └── pituitary/
-
+   ```
+   Dataset/
+   ├── Training/
+   │   ├── glioma/
+   │   ├── meningioma/
+   │   ├── notumor/
+   │   └── pituitary/
+   └── Testing/
+       ├── glioma/
+       ├── meningioma/
+       ├── notumor/
+       └── pituitary/
+   ```
 4. **Train Method 1 (Tucker + Neural Network):**
     
     ```bash
