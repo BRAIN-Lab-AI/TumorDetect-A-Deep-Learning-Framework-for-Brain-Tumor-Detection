@@ -117,18 +117,44 @@ The workflow classify MRI images into tumor types through two approaches:
     pip install -r requirements.txt
     ```
 
-3. **Train the Model:**
-    Configure the training parameters in the provided configuration file and run:
+3. **Prepare Dataset:** Organize your brain tumor MRI dataset in the following structure:
+```
+ Dataset/
+ ├── Training/
+ │   ├── glioma/
+ │   ├── meningioma/
+ │   ├── notumor/
+ │   └── pituitary/
+ └── Testing/
+     ├── glioma/
+     ├── meningioma/
+     ├── notumor/
+     └── pituitary/
+
+4. **Train Method 1 (Tucker + Neural Network):**
+    
     ```bash
-    python train.py --config configs/train_config.yaml
+    python src/train_classification.py
     ```
 
-4. **Generate Images:**
-    Once training is complete, use the inference script to generate images.
+5. **Generate Visualizations using Saliency maps (for Method 1)::**
+    
     ```bash
-    python inference.py --checkpoint path/to/checkpoint.pt --input "A surreal landscape with mountains and rivers"
+    python src/train_detection_nn.py
     ```
 
+6. **Train Method 2 (CNN + Grad-CAM):**
+    
+    ```bash
+    python src/train_cnn_for_gradcam.py
+    ```
+7. **Generate Grad-CAM Visualizations (for Method 2):**
+    
+    ```bash
+    python src/generate_gradcam_only.py
+    ```
+    
+    
 ## Acknowledgments
 - **Open-Source Communities:** Thanks to the contributors of TensorFlow, TensorLy, scikit-learn, and other libraries for their amazing work.
 - **Instructor:** Special thanks Dr.Muzammil Behzad for the invaluable guidance and support throughout this project.
