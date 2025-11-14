@@ -50,10 +50,10 @@ In my project, I plan to explore possible improvements to the models by first un
 
 
 ### Problem Statements
-- **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
-- **Problem 2:** Existing models suffer from slow inference times during the image generation process.
-- **Problem 3:** There is limited capability in performing style transfer and generating diverse artistic variations.
-
+- **Problem 1:** Achieving high-accuracy from high dimentional images remains challenging due to high computational complexity.
+- **Problem 2:** There is limited capability in providing explanations about which image regions contribute to model predictions.
+- **Problem 3:** Balancing high classification accuracy with model interpretability remains difficult.
+  
 ### Loopholes or Research Areas
 - **Evaluation Metrics:** Lack of robust metrics to effectively assess the quality of generated images.
 - **Output Consistency:** Inconsistencies in output quality when scaling the model to higher resolutions.
