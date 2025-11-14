@@ -105,16 +105,14 @@ The workflow classify MRI images into tumor types through two approaches:
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/enhanced-stable-diffusion.git
-    cd enhanced-stable-diffusion
+    git clone https://github.com/BRAIN-Lab-AI/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection.git
+    cd TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection
     ```
 
 2. **Set Up the Environment:**
     Create a virtual environment and install the required dependencies.
     ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use: venv\Scripts\activate
-    pip install -r requirements.txt
+      pip install -r requirements.txt
     ```
 
 3. **Prepare Dataset:** Organize your brain tumor MRI dataset in the following structure:
