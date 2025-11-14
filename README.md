@@ -131,5 +131,5 @@ The workflow classify MRI images into tumor types through two approaches:
 
 ## Acknowledgments
 - **Open-Source Communities:** Thanks to the contributors of TensorFlow, TensorLy, scikit-learn, and other libraries for their amazing work.
-- **Individuals:** Special thanks Dr.Muzammil Behzad for the invaluable guidance and support throughout this project.
+- **Instructor:** Special thanks Dr.Muzammil Behzad for the invaluable guidance and support throughout this project.
 - **Dataset:** Thanks to the creators and maintainers of the Brain Tumor MRI Dataset for making this project possible.
