@@ -20,7 +20,6 @@ The project domain includes healthcare, computer vision, and deep learning. The 
 This project implements two approaches for brain tumor classification with explainable visualizations. The first approach uses Tucker decomposition which reduces dimensionality efficiently, and a deep neural network for classification. The second approach uses CNN with Grad-CAM, which provides interpretable class activation maps. These methods help classify tumors with high accuracy (97.33% and 95.73%) and provide visual explanations.
 In my project, I plan to explore possible improvements to the models by first understanding how both architectures work, then experimenting with different regularization techniques, comparing visualization methods for interpretability, optimizing training parameters, and analyzing per-class performance to identify strengths of each approach.
 
-# THE FOLLOWING IS SUPPOSED TO BE DONE LATER
 
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
