@@ -36,16 +36,18 @@ In my project, I plan to explore possible improvements to the model by first und
 ## Project Technicalities
 
 ### Terminologies
-- **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
-- **Latent Space:** A compressed, abstract representation of data where complex features are captured.
-- **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
-- **Text Encoder:** A model that converts text into numerical embeddings for downstream tasks.
-- **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
-- **Tokenization:** The process of breaking down text into smaller units (tokens) for processing.
-- **Noise Vector:** A randomly generated vector used to initialize the diffusion process in generative models.
-- **Decoder:** A network component that transforms latent representations back into image space.
-- **Iterative Refinement:** The process of gradually improving the quality of generated data through multiple steps.
-- **Conditional Generation:** The process where outputs are generated based on auxiliary inputs, such as textual descriptions.
+- **Brain Tumor Classification:** Automated classification of MRI images of the brain into tumor type (glioma, meningioma, and pituitary tumor) and no tumor.
+- **Medical Imaging:** The use of MRI scans for the visualization of the various structures that are contained within the body.
+- **Deep Learning:** Multi-layer neural networks that are capable of learning hierarchical features from data.
+- **Neural networks:** Computational models composed of interlinked layers that learn the mappings between inputs and outputs.
+- **CNN:** This refers to the architecture of neural networks that utilizes convolutional layers to extract spatial patterns within images.
+- **Preprocessing Pipeline:** The operations that are performed on the images before training a model.
+- **Tucker Decomposition:** Data dimension reduction with the preservation of spatial information using tensor factorization.
+- **Explainable AI:** Techniques that enable the visualization of the features used to drive model predictions.
+- **Grad-CAM:** Visualization method emphasizing key parts of the images through the computation of the gradient of the predictions.
+- **Saliency Map:** Heatmap of importance of each pixel for predictions using the gradient of the input.
+- **Input Gradient:** This is the derivative of the output with respect to the pixels of the input. This illustrates important portions of the input
+
 
 ### Problem Statements
 - **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
