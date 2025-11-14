@@ -60,9 +60,10 @@ In my project, I plan to explore possible improvements to the models by first un
 - **Computational Resources:** Training requires significant GPU compute resources, which may not be readily accessible.
 
 ### Problem vs. Ideation: Proposed 3 Ideas to Solve the Problems
-1. **Optimized Architecture:** Redesign the model architecture to improve efficiency and balance image quality with faster inference.
-2. **Advanced Loss Functions:** Integrate novel loss functions (e.g., perceptual loss) to better capture artistic nuances and structural details.
-3. **Enhanced Data Augmentation:** Implement sophisticated data augmentation strategies to improve the model’s robustness and reduce overfitting.
+1. **Dimensionality Reduction:** Apply Tucker decomposition on the data to reduce the features from 62,500 to 100, improving computational efficiency.
+2. **Interpretability:** Use input gradients and Grad-CAM to show which image regions influence predictions.
+3. **Dual Architecture:** Implement two complementary methods,Tucker decomposition with fully connected neural networks (97.33% accuracy) and CNN with Grad-CAM (95.73% accuracy), to balance high
+   classification accuracy with model interpretability.   
 
 ### Proposed Solution: Code-Based Implementation
 This repository provides an implementation of brain tumor classification using two approaches. The solution includes:
