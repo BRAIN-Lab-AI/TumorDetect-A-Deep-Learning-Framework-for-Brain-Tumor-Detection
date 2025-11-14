@@ -65,11 +65,12 @@ In my project, I plan to explore possible improvements to the models by first un
 3. **Enhanced Data Augmentation:** Implement sophisticated data augmentation strategies to improve the model’s robustness and reduce overfitting.
 
 ### Proposed Solution: Code-Based Implementation
-This repository provides an implementation of the enhanced stable diffusion model using PyTorch. The solution includes:
+This repository provides an implementation of brain tumor classification using two approaches. The solution includes:
 
-- **Modified UNet Architecture:** Incorporates residual connections and efficient convolutional blocks.
-- **Novel Loss Functions:** Combines Mean Squared Error (MSE) with perceptual loss to enhance feature learning.
-- **Optimized Training Loop:** Reduces computational overhead while maintaining performance.
+- **Tucker Decomposition:** Reduces MRI dimensionality while preserving spatial features for efficient neural network training.
+- **Deep Neural Network:** Fully connected NN architecture [512, 384, 256, 128] with dropout and L2 regularization to prevent overfitting.
+- **CNN with Grad-CAM:** Convolutional architecture with explainable class activation mapping for interpretable predictions.
+- **Visualization Methods:** Input gradients and Grad-CAM heatmaps to show which regions influenced classification decisions.
 
 ### Key Components
 - **`train_classification.py`**: Handles Tucker decomposition, neural network training, and model evaluation..
