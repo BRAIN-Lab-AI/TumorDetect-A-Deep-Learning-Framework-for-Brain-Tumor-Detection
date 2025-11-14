@@ -72,10 +72,11 @@ This repository provides an implementation of the enhanced stable diffusion mode
 - **Optimized Training Loop:** Reduces computational overhead while maintaining performance.
 
 ### Key Components
-- **`model.py`**: Contains the modified UNet architecture and other model components.
-- **`train.py`**: Script to handle the training process with configurable parameters.
-- **`utils.py`**: Utility functions for data processing, augmentation, and metric evaluations.
-- **`inference.py`**: Script for generating images using the trained model.
+- **`train_classification.py`**: Handles Tucker decomposition, neural network training, and model evaluation..
+- **`neural_network_trainer.py`**: Contains neural network architecture and training configuration.
+- **`train_detection_nn.py`**: Generates input gradient visualizations and saliency maps.
+- **`train_cnn_for_gradcam.py`**: Implements CNN training.
+- **`generate_gradcam_only.py`**: Generates Grad-CAM heatmaps for visualization using the trained CNN model.
 
 ## Model Workflow
 The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
