@@ -81,20 +81,26 @@ This repository provides an implementation of brain tumor classification using t
 - **`generate_gradcam_only.py`**: Generates Grad-CAM heatmaps for visualization using the trained CNN model.
 
 ## Model Workflow
-The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
+The workflow classify MRI images into tumor types through two approaches:
 
+**Method 1:** Tucker Decomposition + Neural Network + Saliency maps
 1. **Input:**
-   - **Text Prompt:** The model takes a text prompt (e.g., "A surreal landscape with mountains and rivers") as the primary input.
-   - **Tokenization:** The text prompt is tokenized and processed through a text encoder (such as a CLIP model) to obtain meaningful embeddings.
-   - **Latent Noise:** A random latent noise vector is generated to initialize the diffusion process, which is then conditioned on the text embeddings.
-
-2. **Diffusion Process:**
-   - **Iterative Refinement:** The conditioned latent vector is fed into a modified UNet architecture. The model iteratively refines this vector by reversing a diffusion process, gradually reducing noise while preserving the text-conditioned features.
-   - **Intermediate States:** At each step, intermediate latent representations are produced that increasingly capture the structure and details dictated by the text prompt.
-
+  - **Image:** The model takes brain MRI image (250x250 grayscale) as the primary input.
+  - **preprocessing:** Gaussian blur, contrast enhancement, normalization.
+2. **Classification process:** 
+  - **Tucker decomposition:** reduces features from 62,500 to 100.
+  - **Fully connected neural network:** to classify the tumor type.
 3. **Output:**
-   - **Decoding:** The final refined latent representation is passed through a decoder (often part of a Variational Autoencoder setup) to generate the final image.
-   - **Generated Image:** The output is a synthesized image that visually represents the input text prompt, complete with artistic style and detail.
+  - Predicted tumor type with input gradient visualization using Saliency maps.
+
+**Method 2:** CNN + Grad-CAM
+1. **Input:**
+  - Same as Method 1.
+2. **Detection process:** 
+  - CNN extracts features through 4 layers.
+  - Final dence layer to classify the tumor type.
+3. **Output:**
+  - Predicted tumor type with Grad-CAM heatmap.
 
 ## How to Run the Code
 
