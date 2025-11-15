@@ -82,6 +82,9 @@ This repository provides an implementation of brain tumor classification using t
 ## Model Workflow
 The workflow classify MRI images into tumor types through two approaches:
 
+<img width="960" height="720" alt="img" src="https://github.com/user-attachments/assets/ed507a2a-bf47-4ccd-abd8-7a73a33c306c" />
+
+
 **Method 1:** Tucker Decomposition + Neural Network + Saliency maps
 1. **Input:**
   - **Image:** The model takes brain MRI image (250x250 grayscale) as the primary input.
