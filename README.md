@@ -24,6 +24,7 @@ In my project, I plan to explore possible improvements to the models by first un
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
 - **Report:** [Project Report](/report.pdf)
+- **Python file:**[Google Colab file](/[Uploading Enhancing_basline_NN_GradientInput.ipynb…]
 
 ### Reference Paper
 - [Enhanced MRI brain tumor detection and classification via topological data analysis and low-rank tensor decomposition](https://www.sciencedirect.com/science/article/pii/S2772415824000142)
