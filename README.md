@@ -84,6 +84,7 @@ The workflow classify MRI images into tumor types through two approaches:
 
 <img width="960" height="720" alt="dual" src="https://github.com/user-attachments/assets/6f6912b9-a8e4-43a2-802b-1f992108ee90" />
 
+<center>
 <img width="700" height="600" alt="preprocessing_samples" src="https://github.com/user-attachments/assets/363bbe10-9bd0-4f38-be73-165722fd676b" />
 
 **Method 1:** Tucker Decomposition + Neural Network + Saliency maps
