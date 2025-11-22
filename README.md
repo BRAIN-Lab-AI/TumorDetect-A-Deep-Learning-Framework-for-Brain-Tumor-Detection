@@ -88,6 +88,8 @@ The workflow classify MRI images into tumor types through two approaches:
 1. **Input:**
   - **Image:** The model takes brain MRI image (250x250 grayscale) as the primary input.
   - **preprocessing:** Gaussian blur, contrast enhancement, normalization.
+  - <img width="3434" height="3597" alt="preprocessing_samples" src="https://github.com/user-attachments/assets/363bbe10-9bd0-4f38-be73-165722fd676b" />
+
 2. **Classification process:** 
   - **Tucker decomposition:** reduces features from 62,500 to 100.
   - **Fully connected neural network:** to classify the tumor type.
