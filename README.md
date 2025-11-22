@@ -164,7 +164,8 @@ The workflow classify MRI images into tumor types through two approaches:
     ```bash
     python src/generate_gradcam_only.py
     ```
-    
+    <img width="1569" height="1076" alt="GRAD_CAM_fig" src="https://github.com/user-attachments/assets/51c8fc9f-3989-439a-a478-34a427e79d03" />
+
     
 ## Acknowledgments
 - **Open-Source Communities:** Thanks to the contributors of TensorFlow, TensorLy, scikit-learn, and other libraries for their amazing work.
