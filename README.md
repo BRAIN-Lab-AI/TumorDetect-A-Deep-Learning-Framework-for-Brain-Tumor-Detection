@@ -23,7 +23,7 @@ In my project, I plan to explore possible improvements to the models by first un
 
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/report.pdf)
+- **Report:** [Deep_Learning_Brain_Tumer_Detection_Areej_g202501830.pdf](https://github.com/user-attachments/files/23691724/Deep_Learning_Brain_Tumer_Detection_Areej_g202501830.pdf)
 
 ### Reference Paper
 - [Enhanced MRI brain tumor detection and classification via topological data analysis and low-rank tensor decomposition](https://www.sciencedirect.com/science/article/pii/S2772415824000142)
