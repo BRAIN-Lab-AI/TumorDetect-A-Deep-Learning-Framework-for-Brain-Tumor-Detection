@@ -127,7 +127,7 @@ def visualize_detection(detector, images, predictions, true_labels, class_names,
         if not ax.has_data():
             ax.axis('off')
 
-    plt.savefig('/content/BrainTumor_clf_TDA/detection_nn_results.png', dpi=150, bbox_inches='tight')
+    plt.savefig('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/detection_nn_results.png', dpi=150, bbox_inches='tight')
     plt.show()
     
     print("Saved: detection_nn_results.png")
@@ -171,9 +171,9 @@ def main():
     
     labels = ['glioma', 'meningioma', 'notumor', 'pituitary']
     
-    path_test = '/content/BrainTumor_clf_TDA/data/Dataset/Testing'
-    model_path = '/content/BrainTumor_clf_TDA/classification_model.pkl'
-    nn_model_path = '/content/BrainTumor_clf_TDA/balanced_neural_network_model.h5'
+    path_test = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/data/Dataset/Testing'
+    model_path = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/classification_model.pkl'
+    nn_model_path = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/balanced_neural_network_model.h5'
     
     if not os.path.exists(model_path) or not os.path.exists(nn_model_path):
         print("ERROR: Model files not found")

@@ -127,8 +127,8 @@ def train_neural_network(core_p, y_train, x_test_unfolded, y_test,
     
     plot_training_history(history)
     
-    model.save('/content/BrainTumor_clf_TDA/balanced_neural_network_model.h5')
-    print("\n Model saved as '/content/BrainTumor_clf_TDA/balanced_neural_network_model.h5'")
+    model.save('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/balanced_neural_network_model.h5')
+    print("\n Model saved as '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/balanced_neural_network_model.h5'")
     
     return model, history, test_loss, test_accuracy, f1
 

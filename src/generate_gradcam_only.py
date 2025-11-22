@@ -9,7 +9,7 @@ from tensorflow import keras
 labels = ['glioma', 'meningioma', 'notumor', 'pituitary']
 
 print("Loading model...")
-model = keras.models.load_model('/content/BrainTumor_clf_TDA/cnn_for_gradcam.h5')
+model = keras.models.load_model('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/cnn_for_gradcam.h5')
 print("Model loaded")
 
 
@@ -66,7 +66,7 @@ def overlay_heatmap_on_image(img, heatmap, alpha=0.4):
 
 
 print("Loading test images...")
-path_test = '/content/BrainTumor_clf_TDA/data/Dataset/Testing'
+path_test = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/data/Dataset/Testing'
 
 x_test = []
 y_test = []
@@ -136,7 +136,7 @@ for idx in tqdm(range(12)):
 plt.suptitle(f'Grad-CAM Tumor Detection ({accuracy*100:.2f}% Accuracy)', 
              fontsize=16, fontweight='bold')
 plt.tight_layout()
-plt.savefig('/content/BrainTumor_clf_TDA/gradcam_detection_results.png', dpi=150, bbox_inches='tight')
+plt.savefig('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/gradcam_detection_results.png', dpi=150, bbox_inches='tight')
 plt.show()
 
 print("\nSaved: gradcam_detection_results.png")

@@ -64,7 +64,7 @@ def plot_training_history(history):
     axes[1].grid(alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig('/content/BrainTumor_clf_TDA/cnn_training_history.png', dpi=150)
+    plt.savefig('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/cnn_training_history.png', dpi=150)
     plt.show()
     
     print("Saved: cnn_training_history.png")
@@ -75,7 +75,7 @@ def plot_confusion_matrix(conf_matrix, classes):
     disp = ConfusionMatrixDisplay(conf_matrix, display_labels=classes)
     disp.plot(colorbar=False, cmap='Blues')
     plt.title("Confusion Matrix - CNN Classification")
-    plt.savefig('/content/BrainTumor_clf_TDA/cnn_confusion_matrix.png', dpi=150)
+    plt.savefig('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/cnn_confusion_matrix.png', dpi=150)
     plt.show()
     
     print("Saved: cnn_confusion_matrix.png")
@@ -224,7 +224,7 @@ def visualize_gradcam_results(gradcam, images, predictions, true_labels,
     
     plt.suptitle('Grad-CAM Tumor Detection', fontsize=16, fontweight='bold')
     plt.tight_layout()
-    plt.savefig('/content/BrainTumor_clf_TDA/gradcam_detection_results.png', dpi=150, bbox_inches='tight')
+    plt.savefig('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/gradcam_detection_results.png', dpi=150, bbox_inches='tight')
     plt.show()
     
     print("Saved: gradcam_detection_results.png")
@@ -234,8 +234,8 @@ def main():
     """Train CNN and generate visualizations"""
     
     labels = ['glioma', 'meningioma', 'notumor', 'pituitary']
-    path_train = '/content/BrainTumor_clf_TDA/data/Dataset/Training'
-    path_test = '/content/BrainTumor_clf_TDA/data/Dataset/Testing'
+    path_train = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/data/Dataset/Training'
+    path_test = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/data/Dataset/Testing'
     
     if not os.path.exists(path_train) or not os.path.exists(path_test):
         print("ERROR: Dataset paths not found")
@@ -306,7 +306,7 @@ def main():
             acc = accuracy_score(y_test[mask], predictions[mask])
             print(f"  {label:12s}: {acc:.4f} ({acc*100:.2f}%)")
     
-    model.save('/content/BrainTumor_clf_TDA/cnn_for_gradcam.h5')
+    model.save('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/cnn_for_gradcam.h5')
     print("\nModel saved: cnn_for_gradcam.h5")
     
     print(f"\nFinal Performance:")

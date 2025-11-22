@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import time
 import sys
 
-sys.path.append('/content/BrainTumor_clf_TDA/src')
+sys.path.append('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/src')
 from neural_network_trainer import train_neural_network
 
 
@@ -59,7 +59,7 @@ def plot_confusion_matrix(conf_matrix, classes):
     disp = ConfusionMatrixDisplay(conf_matrix, display_labels=classes)
     disp.plot(colorbar=False, cmap='Blues')
     plt.title("Confusion Matrix")
-    plt.savefig('/content/BrainTumor_clf_TDA/classification_confusion_matrix.png', dpi=150)
+    plt.savefig('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/classification_confusion_matrix.png', dpi=150)
     plt.show()
 
 
@@ -79,8 +79,8 @@ def main():
     
     labels = ['glioma', 'meningioma', 'notumor', 'pituitary']
     
-    path_train = '/content/BrainTumor_clf_TDA/data/Dataset/Training'
-    path_test = '/content/BrainTumor_clf_TDA/data/Dataset/Testing'
+    path_train = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/data/Dataset/Training'
+    path_test = '/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/data/Dataset/Testing'
     
     if not os.path.exists(path_train) or not os.path.exists(path_test):
         print("ERROR: Dataset paths not found")
@@ -151,7 +151,7 @@ def main():
         'f1_score': nn_f1
     }
     
-    with open('/content/BrainTumor_clf_TDA/classification_model.pkl', 'wb') as f:
+    with open('/content/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/classification_model.pkl', 'wb') as f:
         pickle.dump(model_data, f)
     
     print("Saved: classification_model.pkl")
