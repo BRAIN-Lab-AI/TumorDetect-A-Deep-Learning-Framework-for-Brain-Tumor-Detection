@@ -104,7 +104,8 @@ The workflow classify MRI images into tumor types through two approaches:
 3. **Output:**
   - Predicted tumor type with Grad-CAM heatmap.
 
-<img width="700" height="600" alt="preprocessing_samples" src="https://github.com/user-attachments/assets/363bbe10-9bd0-4f38-be73-165722fd676b" />
+<img width="3434" height="3597" alt="preprocessing_samples" src="https://github.com/user-attachments/assets/94c86fe0-0ab6-4269-8bd2-22f522d6c146" />
+
 
 ## How to Run the Code
 
