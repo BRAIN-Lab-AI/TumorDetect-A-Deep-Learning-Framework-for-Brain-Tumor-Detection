@@ -95,8 +95,6 @@ The workflow classify MRI images into tumor types through two approaches:
 3. **Output:**
   - Predicted tumor type with input gradient visualization using Saliency maps.
     
-
-<img width="700" height="600" alt="preprocessing_samples" src="https://github.com/user-attachments/assets/363bbe10-9bd0-4f38-be73-165722fd676b" />
 **Method 2:** CNN + Grad-CAM
 1. **Input:**
   - Same as Method 1.
@@ -105,6 +103,8 @@ The workflow classify MRI images into tumor types through two approaches:
   - Final dence layer to classify the tumor type.
 3. **Output:**
   - Predicted tumor type with Grad-CAM heatmap.
+
+<img width="700" height="600" alt="preprocessing_samples" src="https://github.com/user-attachments/assets/363bbe10-9bd0-4f38-be73-165722fd676b" />
 
 ## How to Run the Code
 
