@@ -120,7 +120,7 @@ The workflow classify MRI images into tumor types through two approaches:
       pip install -r requirements.txt
     ```
 
-3. **Prepare Dataset:** Organize your brain tumor MRI dataset in the following structure:
+3. **Prepare Dataset:** Dawnload your brain tumor MRI dataset and organize it in the following structure:
    ```
    TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection/
    ├── data/
