@@ -148,24 +148,24 @@ The workflow classify MRI images into tumor types through two approaches:
 4. **Train Method 1 (Tucker + Neural Network):**
     
     ```bash
-    python src/train_classification.py
+    python train_classification.py
     ```
 
 5. **Generate Visualizations using Saliency maps (for Method 1)::**
     
     ```bash
-    python src/train_detection_nn.py
+    python train_detection_nn.py
     ```
 
 6. **Train Method 2 (CNN + Grad-CAM):**
     
     ```bash
-    python src/train_cnn_for_gradcam.py
+    python train_cnn_for_gradcam.py
     ```
 7. **Generate Grad-CAM Visualizations (for Method 2):**
     
     ```bash
-    python src/generate_gradcam_only.py
+    python generate_gradcam_only.py
     ```
     <img width="1569" height="1076" alt="GRAD_CAM_fig" src="https://github.com/user-attachments/assets/51c8fc9f-3989-439a-a478-34a427e79d03" />
 
