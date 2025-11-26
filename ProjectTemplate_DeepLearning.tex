@@ -1,0 +1,489 @@
+\documentclass[conference]{IEEEtran} 
+\usepackage{graphicx} 
+\usepackage{amsmath} 
+\usepackage{cite} 
+\usepackage{hyperref}
+
+\begin{document} 
+
+\title{A Dual Deep Learning Framework for Accurate and Interpretable Brain Tumor Classification} 
+
+\author{
+    \IEEEauthorblockN{Areej Almalki}
+    \IEEEauthorblockA{Student IDs: g202501830 \\ King Fahd University of Petroleum and Minerals \\ Dhahran, Saudi Arabia}
+    \and
+    \IEEEauthorblockN{Supervised by: Dr. Muzammil Behzad}
+    \IEEEauthorblockA{muzammil.behzad@kfupm.edu.sa \\ King Fahd University of Petroleum and Minerals \\ Dhahran, Saudi Arabia}
+}
+
+\maketitle 
+
+\begin{abstract} 
+Brain tumors happen when cells in the brain grow abnormally. These growths can be deadly. There are different types of brain tumors. Some are benign. Others are malignant. Finding these tumors quickly and correctly is very important. It can save lives.
+
+Doctors use MRI scans to diagnose brain tumors early \cite{ref5, ref8}. But looking at these images manually takes a lot of time. Mistakes can happen too. Deep learning models work well for classifying tumors \cite{ref2, ref11}. They get high accuracy. However, there is a problem. These models are like black boxes \cite{ref9, ref12}. Doctors do not know how they make predictions. This is why trusting them completely is hard in hospitals.
+
+This study presents two different methods to classify brain tumors. The first method uses Tucker decomposition to reduce the features from 62,500 to 100, similar to the baseline approach \cite{ref1}. A neural network then classifies the tumors. This gets 97.56\% accuracy compared to 97.28\% from the baseline using Extra Trees classifier \cite{ref1}. To explain the results, input gradient saliency map is used. The second approach uses a CNN with Grad-CAM \cite{ref9, ref20}. It gets 95.73\% accuracy and shows where tumors are located more clearly.
+
+The results show Tucker decomposition and Neural Network model gives better accuracy. CNN model with Grad-CAM gives better interpretability and tumor localization \cite{ref6, ref20}. Both balance accuracy with explainability. Doctors can pick the method based on what they need. This dual approach offers a practical solution for automated brain tumor detection in hospitals.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Neural Networks, Deep Learning, CNN, Tucker Decomposition, Grad-CAM, Explainable AI, MRI Analysis, Medical Imaging
+\end{IEEEkeywords}
+
+\section{Introduction} 
+\subsection{Background and Significance} 
+Brain tumors are considered one of the main medical conditions that affect human life. They can be classified into different types such as glioma, meningioma, and pituitary \cite{ref5}. Approximately 30\% of them are labeled as gliomas, which are often malignant. There are many ways to detect brain tumors, such as Magnetic Resonance Imaging (MRI). This tool is difficult to manually assess and human decisions are often prone to errors. Therefore, recently published research studies are using machine learning and deep learning methods in AI-based applications to detect brain tumors from magnetic resonance imaging \cite{ref2, ref11, ref12}.
+
+\subsection{Challenges in Current Techniques} 
+Machine learning and deep learning techniques are now powerful tools for automated detection. They show very high accuracy in detecting and classifying tumors using MRI scans \cite{ref2, ref11}. However, this task remains difficult for many reasons. The first reason is the complexity of brain structures. The second reason is the variation in the shapes of the tumors \cite{ref8, ref20}. In addition, these applications require large images datasets with consistent labeling and powerful computing resources to train the models \cite{ref10, ref16}. Moreover, machine learning and deep learning applications provide results without explicit explanations. \cite{ref9, ref12}.
+
+\subsection{Problem Statement} 
+The early diagnosis using MRI is crucial to successfully treat brain tumors \cite{ref5, ref8}. It helps then to increase survival rates among patients. MRI scans used by doctors to check the tumor size, shape, and location. They can determine whether the tumor is a benign or cancerous tumor according to their expertise and knowledge. The main issue with this method is that it is very time-consuming and generates errors. These errors ultimately affect the health of a patient.
+
+To resolve this issue, several researchers have developed many systems using machine learning and deep learning models to automatically detect brain tumors \cite{ref1, ref2, ref11}. The systems face many problems as well such as:
+
+\textbf{Problem 1:} They required powerful computing resources such as high RAM and GPUs \cite{ref10, ref16, ref17}. Most computers are not fast enough to allow their usage directly in hospitals.
+
+\textbf{Problem 2:} Deep learning algorithms provide a high level of accuracy. However, they lack transparency \cite{ref9, ref12}. The algorithms do not clarify how they made predictions. Consequently, physicians cannot trust these predictions, which is crucial when designing a reliable treatment plan \cite{ref7, ref9}.
+
+\subsection{Objectives} 
+The main objectives of this study are as follows:
+
+- To develop two different approaches for brain tumor classification using MRI images. The first approach uses Tucker decomposition to reduce the data size, similar to the baseline study \cite{ref1}. It reduces features from 62,500 to only 100 features. Then it uses a neural network for classification. This method gets higher accuracy. The second approach uses CNN with Grad-CAM \cite{ref20}. This one is good for visualization. It shows where tumors are located. The images are clearer.
+
+Both methods give results that doctors can understand. The first uses saliency maps. The second uses Grad-CAM heatmaps \cite{ref7, ref9, ref20}. These maps show which parts of the brain image matter for predictions. Doctors can see why the model decided something. This matters a lot in medical work.
+
+The goal is simple. Give doctors two choices. They pick based on what they need. If they want the best accuracy for diagnosis, they use the first approach. If they need to see where the tumor is, they can use Grad-CAM in second approach. Both methods are useful for different situations in clinical practice.
+
+\subsection{Scope of Study} 
+The focus of this study is on developing machine learning and deep learning models for brain tumor classification using MRI images. We use a public dataset of 7,023 MRI images. The dataset has been used in many research papers before \cite{ref1, ref2}. It is divided into four categories: glioma, meningioma, pituitary, and no tumor.
+
+Our research study develops two complementary approaches. The first approach combines Tucker decomposition with a neural network \cite{ref1}. Tucker decomposition is used for dimensionality reduction. It reduces features from 62,500 to 100. The second approach uses a Convolutional Neural Network (CNN) with Grad-CAM visualization \cite{ref20}.
+
+Both methods provide explainable visualizations. The first uses input gradient saliency maps. The second uses Grad-CAM heatmaps to highlight regions of interest \cite{ref20}. These visualizations support clinical interpretation and decision making \cite{ref7, ref9}.
+
+The main contribution is to balance efficiency, accuracy, and ability to interpret the results of MRI data.
+
+\section{Literature Review} 
+\subsection{Overview of Existing Techniques} 
+In recent research, numerous methods have been proposed for predicting brain tumors using machine learning and deep learning. Many of these methods use MRI images \cite{ref2, ref5, ref12}. One of the most common approaches is training Convolutional Neural Network (CNN) models on MRI scans to detect and classify tumors \cite{ref8, ref11, ref18}. The primary reason for using MRI images is their safety, as they do not involve exposure to radiation \cite{ref13}. This is extremely important because patients will be subjected to multiple imaging tests for follow-up and examination throughout their treatment. Moreover, the increasing number of medical imaging has illustrated a need for automated systems to assist healthcare providers in decision-making and classification tasks \cite{ref6, ref16, ref20}.
+
+The automated systems proposed in the literature demonstrated high performance and accuracy in brain tumors detection and classification using MRI scans \cite{ref1, ref2, ref11}. Machine learning algorithms such as Random Forest, XGBoost, and AdaBoost have proven to deliver fast and efficient results \cite{ref1, ref14, ref15}. On the other hand, deep learning techniques such as CNN shows exceptional ability in learning complex image features \cite{ref2, ref5, ref11}. This helps to ensure perfect localization as well as classification of objects. Recent researches also identified hybrid approaches, which may combine various architectures of deep learning, with improved capabilities in classifying images \cite{ref3, ref10, ref13}.
+
+\subsection{Related Work} 
+Several recent studies have improved brain tumor detection using hybrid or deep learning models. Various approaches have combined CNN features with traditional classifiers to get better classification results \cite{ref14, ref15}. Researchers have also worked on enhancing image quality through preprocessing techniques to improve CNN performance \cite{ref7, ref9, ref13}. Deep learning architectures ranging from custom CNNs to advanced networks have been developed for efficient classification \cite{ref8, ref11, ref18}. Transfer learning with pre-trained models such as ResNet, VGG, and EfficientNet has shown significant improvements in brain tumor classification \cite{ref16, ref17, ref19}. 
+
+Ensemble learning approaches have been explored to merge predictions obtained from multiple models \cite{ref7, ref15}. Attention mechanisms have also been integrated with deep learning models to improve the accuracy in detection tasks \cite{ref10, ref11, ref20}. Optimized models focus on balancing accuracy with computational efficiency, making them suitable for clinical deployment \cite{ref4, ref16, ref18}.
+
+Tensor decomposition methods like Tucker decomposition are widely used for dimensionality reduction in high-dimensional medical data \cite{ref1, ref15}. The baseline study \cite{ref1} combined Tucker decomposition with six machine learning classifiers including KNN, SVM, Random Forest, Extra Trees, XGBoost, and AdaBoost. The Extra Trees classifier achieved the highest accuracy of 97.28\% on brain tumor classification across four classes: glioma, meningioma, pituitary, and no tumor. The baseline study also used persistent homology from topological data analysis (TDA) to extract critical regions in MRI scans \cite{ref1}. This topological information helps identify areas that might contain tumor signatures. This improves interpretability when combined with classifier outputs.
+
+\subsection{Limitations in Existing Approaches} 
+CNN and transformer models show effectiveness for detecting brain tumors \cite{ref2, ref5, ref11}. But these methods have several problems. They need huge amounts of labeled images, powerful computers, and lots of preprocessing work \cite{ref10, ref16, ref17}. This makes them hard to use in hospitals and clinics. Another issue is that most deep learning models cannot explain why they made a certain prediction \cite{ref9, ref12}. Doctors need to understand how the model works before they can trust it \cite{ref7, ref9}. Also, CNNs sometimes fail to generalize across different MRI images because the images can vary in quality and tumors come in different shapes and sizes \cite{ref7, ref8, ref20}.
+
+Previous studies have used Tucker decomposition for dimensionality reduction \cite{ref1, ref15}. The baseline approach \cite{ref1} tested multiple machine learning classifiers and achieved 97.28\% accuracy with Extra Trees. However, deep learning approaches were not explored in that study. Neural networks have the ability to learn complex hierarchical features automatically \cite{ref2, ref4, ref11}. This suggests that combining Tucker decomposition with deep learning could potentially improve the classification performance.
+
+Another limitation is that Tucker decomposition loses spatial relationships during the dimensionality reduction process \cite{ref1}. This makes it difficult to generate visual explanations that show which parts of the image are important for making classification decisions. The persistent homology approach provides some level of interpretability, but the results are not straightforward and easy to understand for medical experts \cite{ref1, ref15}. Medical practitioners prefer direct visual explanations that clearly highlight the suspicious regions on the MRI scan itself \cite{ref6, ref20}. Very few studies have successfully combined Tucker decomposition with deep learning models or provided clear tumor localization capabilities. Therefore, this study tries to balance accuracy and computational efficiency while providing clear visual explanations that are useful for clinical practice.
+ 
+\section{Proposed Methodology} 
+\subsection{Existing Model and Challenges} 
+The baseline approach uses Tucker decomposition combined with machine learning classifiers to classify brain tumors into four classes: glioma, meningioma, pituitary, and no tumor \cite{ref1}. The model first applies preprocessing to MRI images. Then it uses Tucker decomposition to reduce the feature space from the original image dimensions to a smaller set of components. After that, the study tested six machine learning classifiers, which are KNN, Random Forest, SVM, Extra Trees, XGBoost, and AdaBoost to find the best approach \cite{ref1}. The Extra Trees classifier achieved the highest accuracy at 97.28\%. It performed better than the other machine learning methods. The baseline model also uses persistent homology to extract critical regions in MRI scans for interpretability.
+
+Despite high accuracy, the baseline model has several problems. First, while multiple traditional machine learning classifiers were tested, deep learning approaches were not explored. Neural networks work better in medical imaging tasks because they can learn complex hierarchical features \cite{ref11}. Second, Tucker decomposition loses spatial information during dimensionality reduction. This makes it hard to localize tumor regions \cite{ref1}. Third, the persistent homology approach is not easy to understand for medical practitioners. They prefer direct visual explanations on the MRI scans. Finally, the model gives only one type of output. It does not have flexibility for different clinical needs.
+
+This research proposes a dual-system architecture to address the baseline limitations \cite{ref1}. The first enhancement replaces the Extra Trees classifier with a neural network while keeping Tucker decomposition for dimensionality reduction. The neural network has multiple hidden layers with regularization techniques to prevent overfitting \cite{ref11}. This system also includes input gradient visualization. It calculates gradients of the output with respect to the input image. This produces heatmaps that highlight important pixels on the original MRI scan. It provides direct visual explanation of what the Tucker-based model focuses on during classification \cite{ref9}. This is an alternative to the persistent homology approach.
+
+The second system uses a convolutional neural network with Grad-CAM visualization \cite{ref20}. Unlike the Tucker-based approach, the CNN preserves spatial information throughout the network. Grad-CAM generates class activation maps by analyzing feature maps in the last convolutional layer. This produces clear heatmaps that show exactly where the tumor is located.
+
+This dual-system approach provides flexibility based on application needs. The Tucker-based system with neural network offers a high accuracy with basic interpretability. The CNN system provides clearer tumor localization. All experiments are conducted with reproducible configurations. The code is structured modularly for easy modification and extension. (Find the code \href{https://github.com/BRAIN-Lab-AI/TumorDetect-A-Deep-Learning-Framework-for-Brain-Tumor-Detection}{here})
+
+\subsection{Algorithm and Implementation} 
+There are two different methods for classification and detection in brain tumors for this study. Both methods require MRI image input. One method employs Tucker Decomposition, while another employs convolutional neural networks with Grad-CAM. These methods have strengths in different areas, such as accuracy or interpretability.
+
+\textbf{Method 1:}
+It handles problems with high-dimensional MRI input data. Every image with a resolution of 250x250 pixels possesses 62,500 features. These features increase complexity, resulting in high training times, requiring substantial storage, with chances of having an overfitted model.
+Tucker Decomposition is employed to reduce the dimensionality \cite{ref1}. It is a type of tensor factorization. It decomposes the large data into smaller parts by breaking it into various dimensions. It decomposes the image tensor into core tensors and factor matrices. The core tensors are significantly smaller compared to the original data. It preserves the most crucial information. Tucker factor matrices are employed to represent patterns for different dimensions. It is able to reconstruct the original object by multiplying these matrices together.
+These features obtained after dimensionality reduction are then passed on to the neural network for classification \cite{ref11}. The neural network consists of several layers in its hidden section. Every layer in the network acquires new features from its preceding layer. Dropout follows each layer to detect any overfitting problems. Batch normalization facilitates training. Another final layer produces probability values for each tumor type.
+For explainability, input gradients are computed to generate saliency maps \cite{ref9}. The input gradients represent the regions in the original image that contributed most to its classification. 
+
+\textbf{Implementation Details:}
+Tucker Decomposition rank: (10, 10, 300) based on suggestion given in baseline paper \cite{ref1}.
+Feature reduction: from 62,500 to 100.
+NN Architecture: fully connected NN has 4 hidden layers with sizes 512, 384, 256, 128.
+Dropout rates: [0.45, 0.35, 0.25, 0.15].
+Activation function: ReLU.
+Batch normalization: Applied after each hidden layer.
+Batch size: 24.
+Regularization: using L2, 0.0001.
+Output Layer: 4 Outputs with Softmax Activation layer
+
+\textbf{Method 2:} 
+The second method involves using a CNN on these preprocessed images \cite{ref11}. Its CNN model consists of four convolutional blocks. These blocks are composed of convolutional layers, batch layers, and max pooling layers.
+The number of filters in each block is increasing. It means that the network is able to capture features at different scales. Initially, features such as edges are captured. Features such as tumor shapes are captured later.
+Global average pooling is employed after convolutional layers. It reduces dimensions while retaining features. Then, there's a dense layer with dropout probability set to 0.5. Finally, there is a softmax output layer to perform classification.
+For visualization, Grad-CAM is applied to the last convolutional layer \cite{ref20}. It calculates the gradients of the output class with respect to each feature map. These values are weighted to obtain a result called a heatmap. It identifies areas in the image, which contributed to the particular output for doctors to understand the location of tumors.
+
+\textbf{Implementation Details:}
+Input image: 250 × 250 pixels.
+CNN blocks: 4 blocks.
+Filters per block: 32, 64, 128, 256.
+Convolutional kernel size: 3 × 3.
+Max pooling size: 2 × 2.
+Batch normalization: Applied after each convolutional layer.
+Dense layer: 256 units with ReLU activation.
+Dropout rate: 0.5.
+Output layer: 4 outputs with softmax activation.
+
+\textbf{Interpretability and Visualization:} Both methods provide visual explanations for their predictions \cite{ref7}. Method 1 uses input gradients that show pixel-level importance. This creates detailed saliency maps showing which specific pixels contributed to the decision. Method 2 uses Grad-CAM that shows region-level importance \cite{ref20}. This creates heatmaps highlighting which areas of the image were important. The visualizations help build trust in the model \cite{ref9}. Doctors can verify that the model is looking at the correct regions before relying on its predictions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{dual.png}
+    \caption{Dual Approach}
+    \label{fig:dual}
+\end{figure}
+\subsection{Loss Function and Optimization} 
+\textbf{Loss Function}
+Both methods use categorical cross-entropy loss for training. It is a common loss function for classification problems including multi-class. It computes the difference between what the model predicts and what the true class is.
+
+\textbf{Optimization Strategy}
+The two methods use different optimizers but follow similar strategies. The first method uses the AdamW optimizer. Method 2 uses Adam optimizer. Furthermore, the learning rate with AdamW is 0.001 and the weight decay is 0.0001. with the learning rate set to 0.001.
+Both methods also use learning rate reduction during training. It decreases by half whenever the validation loss does not improve for several epochs during training. It prevents getting stuck in any plateaus during training. It improves the model’s performance by finding some better solutions to problems.
+
+\section{Experimental Design and Evaluation} 
+\subsection{Datasets and Preprocessing} 
+This research uses the same dataset and preprocessing pipeline as the baseline study. The dataset is brain tumor MRI scans. It is public and available from Kaggle (check this \href{https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset/data}{link}). It is containing 7,023 images as shown in \ref{fig:dataset} divided into: 
+
+\begin{itemize}
+    \item Training set: 5,712 images.
+    \item Testing set: 1,311 images.
+    \item Classes: glioma, meningioma, pituitary, and no tumor.
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{dataset.png}
+    \caption{Dataset Details}
+    \label{fig:dataset}
+\end{figure}
+As in the baseline approach, five preprocessing steps are applied:
+\begin{itemize}
+\item \textbf{Gaussian Filtering}: A 5×5 Gaussian filter is applied for noise removal and image smoothing while preserving edge integrity. This mitigates noise from magnetic radiation in MRI scans.
+\item \textbf{Image Enhancement}: Both brightness and contrast are adjusted to improve visualization and to offset any possible reduction of brightness induced by Gaussian blurring.
+\item \textbf{Resizing:} Images are all resized to 250×250 pixel dimensions to give them all equal dimensions.
+\item \textbf{Color Inversion:} This technique involves reversing the intensity values of each pixel to create areas of darkness from areas of brightness and vice versa. This is useful for highlighting the gray-scale values for easy interpretation of dominant values within each image.
+\item \textbf{Normalization:} This step normalizes pixel values into the range of 0 to 1. This removes variations generated by differences in imaging parameters and helps to give all features equal contribution during training of the network.
+\end{itemize}
+Figure 2 shows the preprocessing results compared to the orignal images.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{preprocessing_samples.png}
+    \caption{Orignal and Preprocessed images}
+    \label{fig:placeholder}
+\end{figure}
+\subsection{Performance Metrics} 
+This study uses several metrics to evaluate the classification models. These metrics help measure how well the models classify different tumor types.
+
+\textbf{Accuracy} measures the percentage of correct predictions out of all predictions. It is calculated as:
+\begin{equation}
+\text{Accuracy} = \frac{\text{Number of Correct Predictions}}{\text{Total Number of Predictions}} \times 100\%
+\end{equation}
+
+\textbf{Precision} measures how many predicted positive cases are actually positive. High precision means fewer false positives. It is calculated as:
+\begin{equation}
+\text{Precision} = \frac{\text{True Positives}}{\text{True Positives + False Positives}}
+\end{equation}
+
+\textbf{Recall} measures how many actual positive cases the model found. High recall means fewer false negatives. It is calculated as:
+\begin{equation}
+\text{Recall} = \frac{\text{True Positives}}{\text{True Positives + False Negatives}}
+\end{equation}
+
+\textbf{F1-Score} combines precision and recall into one metric. It is the harmonic mean of both values. It is calculated as:
+\begin{equation}
+\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision + Recall}}
+\end{equation}
+
+These metrics together provide a complete picture of model performance across all tumor classes.
+
+\textbf{Confusion Matrix} is another table generated for evaluating classification performance. It provides information on how many images belonging to each class are predicted to belong to each class. This is very helpful for identifying classes which are being confused for each other and where improvement is required.
+
+All measures are calculated on the test dataset to ensure fairness when comparing to baseline study.
+
+The first method achieved strong performance on the test set. 
+Table \ref{tab:classification_report} shows the classification report for each tumor type. The model performs equally across all four classes.
+
+\begin{table}[h]
+\centering
+\caption{Classification Report for Method 1}
+\label{tab:classification_report}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\ \hline
+Glioma & 0.9664 & 0.9600 & 0.9632 & 300 \\ \hline
+Meningioma & 0.9597 & 0.9346 & 0.9470 & 306 \\ \hline
+No Tumor & 0.9854 & 1.0000 & 0.9926 & 405 \\ \hline
+Pituitary & 0.9868 & 1.0000 & 0.9934 & 300 \\ \hline
+\hline
+Accuracy & & & 0.9756 & 1311 \\ \hline
+Macro Avg & 0.9746 & 0.9737 & 0.9741 & 1311 \\ \hline
+Weighted Avg & 0.9754 & 0.9756 & 0.9754 & 1311 \\ \hline
+\end{tabular}
+\end{table}
+
+The second method also achieved strong performance on the test set. 
+Table \ref{tab:cnn_classification_report} shows the detailed classification report for each tumor class.
+
+\begin{table}[h]
+\centering
+\caption{Classification Report for Method 2}
+\label{tab:cnn_classification_report}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\ \hline
+Glioma & 0.9780 & 0.8900 & 0.9319 & 300 \\ \hline
+Meningioma & 0.9159 & 0.9248 & 0.9203 & 306 \\ \hline
+No Tumor & 0.9853 & 0.9926 & 0.9889 & 405 \\ \hline
+Pituitary & 0.9221 & 0.9867 & 0.9533 & 300 \\ \hline
+\hline
+Accuracy & & & 0.9519 & 1311 \\ \hline
+Macro Avg & 0.9503 & 0.9485 & 0.9486 & 1311 \\ \hline
+Weighted Avg & 0.9530 & 0.9519 & 0.9517 & 1311 \\ \hline
+\end{tabular}
+\end{table}
+
+Overall, both methods show good accuracy. ALso, the weighted average F1-score of both of them shows good performance. While accuracy in method 2 is lower than accuracy in method 1, it provides clearer visual explanations through Grad-CAM heatmaps.
+
+\subsection{Experiment Setup} 
+All experiments were performed in Google Colab Pro with GPU support. Google Colab Pro offers support for NVIDIA T4 GPUs with 15 GB GPU RAM and high RAM runtime environments. These hardware settings facilitate efficient training of deep models. The training process with GPUs runs significantly faster in comparison with CPU environments.
+
+\begin{table}[h]
+\centering
+\caption{Training Configuration for Method 1}
+\label{tab:training_config_method1}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Training samples & 5,712 images \\
+\hline
+Test samples & 1,311 images \\
+\hline
+Features per sample & 100 (after Tucker decomposition) \\
+\hline
+Tucker rank & (10, 10, 300) \\
+\hline
+Maximum epochs & 150 \\
+\hline
+Batch size & 24 \\
+\hline
+Optimizer & AdamW \\
+\hline
+Learning rate & 0.001 \\
+\hline
+Weight decay & 0.0001 \\
+\hline
+L2 regularization & 0.0001 \\
+\hline
+Dropout rates & [0.45, 0.35, 0.25, 0.15] \\
+\hline
+Early stopping patience & 20 epochs \\
+\hline
+Learning rate reduction & Factor 0.5, patience 8 epochs \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Training Configuration for Method 2}
+\label{tab:training_config_method2}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Training samples & 5,712 images \\
+\hline
+Test samples & 1,311 images \\
+\hline
+Input size & 250 × 250 pixels \\
+\hline
+CNN blocks & 4 blocks \\
+\hline
+Filters per block & [32, 64, 128, 256] \\
+\hline
+Maximum epochs & 30 \\
+\hline
+Batch size & 32 \\
+\hline
+Optimizer & Adam \\
+\hline
+Learning rate & 0.001 \\
+\hline
+Dropout rate & 0.5 \\
+\hline
+Early stopping patience & 10 epochs \\
+\hline
+Learning rate reduction & Factor 0.5, patience 5 epochs \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Results Comparative Analysis}
+
+This section compares our results with the baseline model. The baseline study \cite{ref1} used Tucker decomposition with Extra Trees classifier. It achieved 97.28\% accuracy. Our first approach uses Tucker decomposition with a neural network. This method achieved 97.56\% accuracy in the best run. The second approach uses CNN with Grad-CAM. It achieved 95.73\% accuracy.
+\begin{table}[h]
+\centering
+\caption{Accuracy Comparison of Different Methods}
+\label{tab:accuracy_comparison}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Method} & \textbf{Approach} & \textbf{Accuracy (\%)} \\ \hline
+Baseline \cite{ref1} & Tucker + Extra Trees & 97.28 \\ \hline
+Proposed Method 1 & Tucker + Neural Network & 97.56 \\ \hline
+Proposed Method 2 & CNN + Grad-CAM & 95.73 \\ \hline
+\end{tabular}
+\end{table}
+
+Table \ref{tab:accuracy_comparison} shows the accuracy results. The Tucker-based neural network performs a bit better than the baseline Extra Trees classifier. The CNN approach has lower accuracy but gives better visualization of where tumors are.
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{Confusion_Method1.png}
+    \caption{Confusion Matrix for Method 1}
+    \label{fig:Confusion_Method1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{confusion_Method2.png}
+    \caption{Confusion Matrix for Method 2}
+    \label{fig:Confusion_Method2}
+\end{figure}
+Figure \ref{fig:Confusion_Method1} and \ref{fig:Confusion_Method2} show the confusion matrices for both methods. The model in method 1 makes fewer mistakes across all four tumor types. The CNN model works well but makes some errors when trying to tell the difference between glioma and meningioma tumors.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{curve_Method1.png}
+    \caption{Loss and Validation Curves for Method 1}
+    \label{fig:NN_accuracy}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{curves_Method2.png}
+\caption{Training and Validation Accuracy for Method 2}
+\label{fig:cnn_accuracy}
+\end{figure}
+
+Figure \ref{fig:NN_accuracy} \ref{fig:cnn_accuracy} shows the training and validation accuracy curves for both methods. The first method  reaches high accuracy quickly and stays stable during training. The CNN model also shows good convergence without overfitting. 
+
+The Tucker-based approach has higher accuracy. It works better when you need the most accurate diagnosis. But it does not show clearly where the tumor is located. The CNN approach is good at showing tumor locations through Grad-CAM heatmaps. Figure \ref{fig:saliency} shows examples of Saliency Map visualizations and Figure \ref{fig:gradcam} shows examples of Grad-CAM visualizations for different tumor types. The heatmaps show the tumor regions clearly. This helps doctors understand what the model is looking at.
+
+\begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{saliencyMap.png}
+        \caption{Saliency MAP for Method 1}
+        \label{fig:saliency}
+\end{figure}
+\begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{GRAD_CAM_fig.png}
+        \caption{GRAD-CAM for Method 2}
+        \label{fig:gradcam}
+\end{figure}
+
+Both methods work better than traditional machine learning in different ways. Doctors can pick which method to use based on what they need.
+ 
+\subsection{Ablation Study}
+
+This section is conducted to evaluates the effectiveness of some components in the first proposed method. Many configurations were tested to see which components are most important for getting high accuracy. Therefore, one component at a time was removed or changed to see how it affects the results.
+
+\begin{table}[h]
+\centering
+\caption{Ablation Study Results for Method 1}
+\label{tab:ablation_results}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Configuration} & \textbf{Accuracy (\%)} & \textbf{Impact} \\ \hline
+Full Model (Final Configuration) & 97.56 & Baseline \\ \hline
+Replace AdamW with Adam & 97.48 & -0.08\% \\ \hline
+Dropout same for all = 0.3 & 97.33 & -0.23\% \\ \hline
+With L2 (0.001 instead of 0.0001) & 94.74 & -2.82\% \\ \hline
+With Batch Size (16 instead of 24) & 97.56 & 0.00\% \\ \hline
+With Patience in Early Stopping, patience=5 & 96.95 & -0.61\% \\ \hline
+Without Batch Normalization & 97.18 & -0.38\% \\ \hline
+With Fixed Learning Rate (no reduction) & 97.02 & -0.54\% \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Summary of Findings:}
+The ablation study shows that some components are more critical than others. L2 regularization has the biggest impact. Using too much regularization drops accuracy by 2.82\%. Patient early stopping is the second most important. The model needs enough time to converge. Dynamic learning rate reduction is third. The model needs to fine-tune with smaller learning rates in later epochs.
+Other components like batch normalization, progressive dropout, and AdamW optimizer also help but have smaller impacts. Every component contributes positively to the final result. Removing any of them makes the accuracy worse. This confirms that the current configuration is well-balanced and optimal for this task.
+
+\subsubsection{Why Two Separate Systems Are Needed}
+
+We initially tried to use Grad-CAM visualization with the first approach. However, the results were not good. Tucker decomposition flattens the image into a one-dimensional vector, removing all spatial information. Grad-CAM requires spatial feature maps from convolutional layers to generate meaningful heatmaps.
+
+\section{Extended Contributions}
+
+This work aims to automatically classify brain tumors from MRI scans and offers two practical solutions.
+
+Most earlier studies either push for the best possible accuracy or try to make the model easy to understand, but not both at the same time. This work provides two options: one model focuses on accuracy and reaches 97.56\%, while a CNN with Grad-CAM reaches 95.73\% and clearly shows where the tumor is in the image. This lets clinicians choose the method that best fits their needs: maximum accuracy or clearer visual explanations.
+
+The first method improves on a published baseline that uses Extra Trees with 97.28\% accuracy \cite{ref1}. By combining Tucker decomposition with a neural network, the proposed model reaches 97.56\%, showing that deep learning can slightly but meaningfully outperform traditional machine learning for this dataset.
+
+Both methods also include visual explanations that help doctors trust and interpret the model’s decisions. The first method uses input gradient maps, and the second uses Grad-CAM heatmaps to highlight important regions in the MRIs \cite{ref20}. These tools reduce the feeling of a “black box” and support clinical decision-making \cite{ref7, ref9}.
+
+\section{Conclusion and Future Work}
+
+In this work, the goal was to build models for brain tumor classification that are both accurate and easy to understand.So that, two models were built and tested on 7,023 MRI images with four types of tumors.
+
+The first model uses Tucker decomposition with a fully connected neural network and it reaches 97.56\% accuracy. This is slightly higher than the 97.28\% from Extra Trees baseline model \cite{ref1}. The second model is a CNN model with Grad-CAM that reaches 95.73\% accuracy. At the same time, it shows clear heatmaps of where the tumor is in the image.
+
+This work still has limitations that can be investigated more. The dataset is not very large. So that, more varied data would likely improve performance of the models. It is always said that deep learning models are data hungry. Another limitation is that the CNN model is less accurate than the first one. It needs more fine tuning. Also, the first model cannot use Grad-CAM because Tucker decomposition removes spatial information.
+
+Future work should test these models on larger datasets and on data from different hospitals and scanners. More investigation is needed to try other dimensionality reduction methods or configurations. Also, exploring ways to combine both models into a single system would be recommended. Testing the models in real clinical workflows is important to see how well they work in practice \cite{ref8}. 
+
+\section{References} 
+\begin{thebibliography}{99}
+    \bibitem{ref1} S. G. De Benedictis, G. Gargano, and G. Settembre, "Enhanced MRI brain tumor detection and classification via topological data analysis and low-rank tensor decomposition," \textit{Journal of Computational Mathematics and Data Science}, vol. 13, pp. 100103, 2024.
+    
+    \bibitem{ref2} Y. Wong, E. L. M. Su, C. F. Yeong, W. Holderbaum, and C. Yang, "Brain tumor classification using MRI images and deep learning techniques," \textit{PLOS ONE}, vol. 20, no. 5, pp. e0322624, 2025.
+    
+    \bibitem{ref3} D. Boubdellaha, R. Mokni, and B. Ammar, "Brain tumor classification with hybrid deep learning models from MRI images," in \textit{Proc. 14th International Conference on Data Science, Technology and Applications (DATA)}, 2025, pp. 455-464.
+    
+    \bibitem{ref4} B. Sandhiya and S. Kanaga Suba Raja, "Deep learning and optimized learning machine for brain tumor classification," \textit{Biomedical Signal Processing and Control}, vol. 89, pp. 105778, 2024.
+    
+    \bibitem{ref5} A. B. Abdusalomov, M. Mukhiddinov, and T. K. Whangbo, "Brain tumor detection based on deep learning approaches and magnetic resonance imaging," \textit{Cancers}, vol. 15, no. 16, pp. 4172, Aug. 2023.
+    
+    \bibitem{ref6} K. Upreti, J. George, and K. Malik, "Automated brain tumor segmentation in MRI using AI for improved neurodiagnostics," \textit{Biomedical and Pharmacology Journal}, vol. 18, no. 2, 2025.
+    
+    \bibitem{ref7} G. S. Tandel, A. Tiwari, and O. G. Kakde, "Multi-class brain tumor grades classification using a deep learning-based majority voting algorithm and its validation using explainable-AI," \textit{Journal of Imaging Informatics in Medicine}, vol. 38, no. 5, pp. 2793-2830, Oct. 2025.
+    
+    \bibitem{ref8} P. Gao, W. Shan, Y. Guo, \textit{et al.}, "Development and validation of a deep learning model for brain tumor diagnosis and classification using magnetic resonance imaging," \textit{JAMA Network Open}, vol. 5, no. 8, pp. e2225608, 2022.
+    
+    \bibitem{ref9} A. Rahman, M. Hayat, N. Iqbal, F. K. Alarfaj, S. Alkhalaf, and F. Alturise, "Enhanced MRI brain tumor detection using deep learning in conjunction with explainable AI SHAP based diverse and multi feature analysis," \textit{Scientific Reports}, vol. 15, no. 1, pp. 29411, Aug. 2025.
+    
+    \bibitem{ref10} A. J. Aiya, N. Wani, M. Ramani, \textit{et al.}, "Optimized deep learning for brain tumor detection: a hybrid approach with attention mechanisms and clinical explainability," \textit{Scientific Reports}, vol. 15, pp. 31386, 2025.
+    
+    \bibitem{ref11} M. Rasheed, S. Iqbal, A. Jaffar, and S. Akram, "Advanced deep learning-based brain tumor classification using a novel customized CNN and optimized residual network," \textit{PLOS ONE}, vol. 20, no. 10, pp. e0334430, Oct. 2025.
+    
+    \bibitem{ref12} O. Azeez and A. Abdulazeez, "Classification of brain tumor based on machine learning algorithms: a review," \textit{Journal of Applied Science and Technology Trends}, vol. 6, no. 1, pp. 1-15, Dec. 2024.
+    
+    \bibitem{ref13} R. Khan, S. Taj, Z. U. Khan, S. U. Khan, J. Khan, T. Arshad, and S. Ayouni, "High-precision brain tumor classification from MRI images using an advanced hybrid deep learning method with minimal radiation exposure," \textit{Journal of Radiation Research and Applied Sciences}, vol. 18, no. 4, pp. 101858, 2025.
+    
+    \bibitem{ref14} F. M. Refaat, M. M. Gouda, and M. Omar, "Detection and classification of brain tumor using machine learning algorithms," \textit{Biomedical and Pharmacology Journal}, vol. 15, no. 4, 2022.
+    
+    \bibitem{ref15} H. Kibriya, R. Amin, A. H. Alshehri, M. Masood, S. S. Alshamrani, and A. Alshehri, "A novel and effective brain tumor classification model using deep feature fusion and famous machine learning classifiers," \textit{Computational Intelligence and Neuroscience}, vol. 2022, pp. 7897669, Mar. 2022.
+    
+    \bibitem{ref16} D. Onah and R. Desai, "Deep brain net: an optimized deep learning model for brain tumor detection in MRI images using EfficientNetB0 and ResNet50 with transfer learning," arXiv preprint arXiv:2507.07011, 2025.
+    
+    \bibitem{ref17} S. M. Rasa, Md. M. Islam, Md. A. Talukder, \textit{et al.}, "Brain tumor classification using fine-tuned transfer learning models on magnetic resonance imaging (MRI) images," \textit{DIGITAL HEALTH}, vol. 10, 2024.
+    
+    \bibitem{ref18} N. Ullah, A. Javed, A. Alhazmi, S. M. Hasnain, A. Tahir, \textit{et al.}, "TumorDetNet: a unified deep learning model for brain tumor detection and classification," \textit{PLOS ONE}, vol. 18, no. 9, pp. e0291200, 2023.
+    
+    \bibitem{ref19} A. Shahin, "Fine-tuned ResNet34 for efficient brain tumor classification," \textit{Scientific Reports}, vol. 15, pp. 36910, 2025.
+
+    \bibitem{ref20} E. Zarenia, A. A. Far, and K. Rezaee, "Automated multi-class MRI brain tumor classification and segmentation using deformable attention and saliency mapping," \textit{Scientific Reports}, vol. 15, pp. 8114, 2025.
+\end{thebibliography}
+
+\end{document}
