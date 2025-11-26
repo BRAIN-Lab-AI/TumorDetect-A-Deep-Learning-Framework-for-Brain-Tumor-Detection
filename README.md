@@ -24,7 +24,7 @@ In my project, I plan to explore possible improvements to the models by first un
 ### Project Documents
 - **Presentation:** [Brain_Tumor_Presentation.pptx](https://github.com/user-attachments/files/23725155/Brain_Tumor_Presentation.pptx)
 
-- **Report:** [Deep_Learning_Brain_Tumer_Detection_Areej_g202501830.pdf](https://github.com/user-attachments/files/23691724/Deep_Learning_Brain_Tumer_Detection_Areej_g202501830.pdf) [Uploading ProjectTemplate_DeepLearning.tex…]()
+- **Report:** [Deep_Learning_Brain_Tumer_Detection_Areej_g202501830.pdf](https://github.com/user-attachments/files/23691724/Deep_Learning_Brain_Tumer_Detection_Areej_g202501830.pdf)
 
 
 ### Reference Paper
